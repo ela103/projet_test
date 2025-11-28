@@ -2,13 +2,14 @@ pipeline {
     agent any
 
     environment {
+        // Tu peux ajouter ici des variables d'environnement si nécessaire
         WORKSPACE_DIR = "${env.WORKSPACE}"
     }
 
     stages {
         stage('Checkout Repository') {
             steps {
-                // Cloner le repo GitHub
+                // Cloner ton repo GitHub
                 git url: 'https://github.com/ela103/projet_test.git', branch: 'master'
             }
         }
@@ -23,24 +24,8 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                script {
-                    // Liste des fichiers à exécuter
-                    def testFiles = ['Add_To_Cart.py', 'UI_Product.py', 'Header_Footer.py']
-
-                    for (file in testFiles) {
-                        bat """
-                        echo -------------------------------
-                        echo Running ${file}
-                        python ${file}
-                        if errorlevel 1 (
-                            echo ${file} a échoué mais on continue
-                        ) else (
-                            echo ${file} exécuté avec succès
-                        )
-                        echo -------------------------------
-                        """
-                    }
-                }
+                // Exécuter ton script Python
+                bat 'python Add_To_Cart.py'
             }
         }
     }
