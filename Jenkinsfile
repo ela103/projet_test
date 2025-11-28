@@ -22,7 +22,12 @@ pipeline {
                 for %%f in (*.py) do (
                     echo -------------------------------
                     echo Running %%f
-                    python %%f || echo %%f a échoué mais on continue
+                    python %%f
+                    if errorlevel 1 (
+                        echo %%f a échoué mais on continue
+                    ) else (
+                        echo %%f exécuté avec succès
+                    )
                     echo -------------------------------
                 )
                 '''
@@ -33,6 +38,9 @@ pipeline {
     post {
         always {
             echo 'Pipeline terminé !'
+        }
+        success {
+            echo 'Tous les scripts ont été exécutés (certains peuvent avoir échoué, mais pipeline passe).'
         }
     }
 }
