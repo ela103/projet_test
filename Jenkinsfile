@@ -1,10 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        WORKSPACE_DIR = "${env.WORKSPACE}"
-    }
-
     stages {
         stage('Checkout Repository') {
             steps {
@@ -26,12 +22,7 @@ pipeline {
                 for %%f in (*.py) do (
                     echo -------------------------------
                     echo Running %%f
-                    python %%f
-                    if %ERRORLEVEL% neq 0 (
-                        echo %%f a échoué mais on continue
-                    ) else (
-                        echo %%f exécuté avec succès
-                    )
+                    python %%f || echo %%f a échoué mais on continue
                     echo -------------------------------
                 )
                 '''
@@ -42,12 +33,6 @@ pipeline {
     post {
         always {
             echo 'Pipeline terminé !'
-        }
-        success {
-            echo 'Tous les scripts ont été exécutés. Vérifie le log pour PASS/FAIL par test.'
-        }
-        failure {
-            echo 'Certains scripts ont échoué. Vérifie le log pour voir lesquels.'
         }
     }
 }
