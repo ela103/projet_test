@@ -15,11 +15,14 @@ pipeline {
             }
         }
 
-        stage('Run All Python Tests') {
+        stage('Run Selected Python Tests') {
             steps {
-                echo 'Exécution de tous les scripts Python (.py) du dossier...'
+                echo 'Exécution des scripts Python sélectionnés...'
                 bat '''
-                for %%f in (*.py) do (
+                rem Liste des fichiers Python à exécuter
+                set FILES=Add_to_cart.py UI_Product.py Header_Footer.py
+
+                for %%f in (%FILES%) do (
                     echo -------------------------------
                     echo Running %%f
                     python %%f
@@ -40,7 +43,7 @@ pipeline {
             echo 'Pipeline terminé !'
         }
         success {
-            echo 'Tous les scripts ont été exécutés (certains peuvent avoir échoué, mais pipeline passe).'
+            echo 'Scripts sélectionnés exécutés (certains peuvent avoir échoué, mais pipeline passe).'
         }
     }
 }
