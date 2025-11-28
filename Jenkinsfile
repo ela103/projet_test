@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Checkout Repository') {
             steps {
-                // Cloner ton repo GitHub
+                // Cloner le repo GitHub
                 git url: 'https://github.com/ela103/projet_test.git', branch: 'master'
             }
         }
@@ -21,10 +21,11 @@ pipeline {
             }
         }
 
-        stage('Run Selected Python Tests') {
+        stage('Run Tests') {
             steps {
                 script {
-                    def testFiles = ["Add_to_cart.py", "UI_Product.py", "Header_Footer.py"]
+                    // Liste des fichiers à exécuter
+                    def testFiles = ['Add_To_Cart.py', 'UI_Product.py', 'Header_Footer.py']
 
                     for (file in testFiles) {
                         bat """
@@ -49,10 +50,15 @@ pipeline {
             echo 'Pipeline terminé !'
         }
         success {
-            echo 'Tous les scripts ont été exécutés avec succès.'
+            echo 'Tous les tests ont été exécutés avec succès.'
         }
         failure {
-            echo 'Certains scripts ont échoué. Vérifie le log pour voir lesquels.'
+            echo 'Certains tests ont échoué. Vérifie le log.'
         }
     }
 }
+
+        }
+    }
+}
+
