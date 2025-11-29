@@ -29,6 +29,8 @@ stage('Debug') {
                 echo "Workspace path: ${env.WORKSPACE}"
 
                 // Exécuter les trois fichiers EXACTEMENT comme ils sont dans GitHub
+                bat 'python Add_To_Cart.py'
+                bat 'python Header_Footer.py'
                 bat 'python UI_Product.py'
             }
         }
@@ -46,6 +48,7 @@ stage('Debug') {
         }
     }
 }
+
 
 
 
