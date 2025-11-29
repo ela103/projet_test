@@ -18,6 +18,11 @@ pipeline {
                 bat 'pip install selenium'
             }
         }
+stage('Debug') {
+    steps {
+        bat 'dir'
+    }
+}
 
         stage('Run Tests') {
             steps {
@@ -43,3 +48,4 @@ pipeline {
         }
     }
 }
+
