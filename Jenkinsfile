@@ -2,21 +2,18 @@ pipeline {
     agent any
 
     environment {
-        // Tu peux ajouter ici des variables d'environnement si nécessaire
         WORKSPACE_DIR = "${env.WORKSPACE}"
     }
 
     stages {
         stage('Checkout Repository') {
             steps {
-                // Cloner ton repo GitHub
                 git url: 'https://github.com/ela103/projet_test.git', branch: 'master'
             }
         }
 
         stage('Install Dependencies') {
             steps {
-                // Installer Selenium si nécessaire
                 bat 'python -m pip install --upgrade pip'
                 bat 'pip install selenium'
             }
@@ -24,8 +21,12 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                // Exécuter ton script Python
+                echo "Workspace path: ${env.WORKSPACE}"
+
+                // Exécuter les trois fichiers EXACTEMENT comme ils sont dans GitHub
                 bat 'python Add_To_Cart.py'
+                bat 'python UI_Product.py'
+                bat 'python Header_Footer.py'
             }
         }
     }
