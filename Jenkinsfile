@@ -30,7 +30,6 @@ stage('Debug') {
 
                 // Exécuter les trois fichiers EXACTEMENT comme ils sont dans GitHub
                 bat 'python Add_To_Cart.py'
-                bat 'python UI_Product.py'
                 bat 'python Header_Footer.py'
             }
         }
@@ -48,4 +47,5 @@ stage('Debug') {
         }
     }
 }
+
 
