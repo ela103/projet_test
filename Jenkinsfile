@@ -29,7 +29,7 @@ stage('Debug') {
                 echo "Workspace path: ${env.WORKSPACE}"
 
                 // Exécuter les trois fichiers EXACTEMENT comme ils sont dans GitHub
-                bat 'python Header_Footer.py'
+                bat 'python login.py'
             }
         }
     }
@@ -46,6 +46,7 @@ stage('Debug') {
         }
     }
 }
+
 
 
 
