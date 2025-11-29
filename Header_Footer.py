@@ -191,4 +191,4 @@ try:
 except:
     print("FAIL: Élément introuvable")
 
-driver.close()
+driver.quit()
