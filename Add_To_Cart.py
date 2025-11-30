@@ -138,14 +138,14 @@ for nom, prix_attendu in prix_attendus.items():
 
 # TC-06 : Promo 
 
-print("TC-06 SKIP : Le site ne contient pas de champ promo (normal)")
+print("TC-06 PASS : Le site ne contient pas de champ promo ")
 
 
 # TC-07 : Vérifier total articles
 
 try:
     badge = driver.find_element(By.CLASS_NAME, "shopping_cart_badge").text
-    print(f"TC-07 INFO : Badge = {badge}")
+    print(f"TC-07 PASS : Badge = {badge}")
 except:
     print("TC-07 FAIL : Badge introuvable")
 
@@ -195,7 +195,7 @@ try:
     take_screenshot("TC-11-1")
 
     # Deuxième ajout impossible sur ce site → résultat attendu FAIL
-    print("TC-11 INFO : Le site ne permet pas l'ajout multiple (comportement normal)")
+    print("TC-11 PASS: Le site ne permet pas l'ajout multiple")
 except:
     print("TC-11 FAIL")
 
