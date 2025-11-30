@@ -61,7 +61,7 @@ for username in usernames:
         driver.find_element(By.ID, "shopping_cart_container").click()
         time.sleep(2)
         try:
-            driver.find_element(By.XPATH, "//div[@class='inventory_item_name' and text(🙁'Sauce Labs Backpack']")
+            driver.find_element(By.XPATH, "//div[@class='inventory_item_name' and text('Sauce Labs Backpack']")
             print("TC-02 PASS : 'Sauce Labs Backpack' est ajouté au panier")
             take_screenshot("TC-02")
         except:
@@ -85,7 +85,7 @@ for username in usernames:
 
         for nom in produits_noms:
             try:
-                driver.find_element(By.XPATH, f"//div[@class='inventory_item_name' and text(🙁'{nom}']")
+                driver.find_element(By.XPATH, f"//div[@class='inventory_item_name' and text('{nom}']")
                 print(f"TC-03 PASS : '{nom}' est présent dans le panier")
                 take_screenshot(f"TC-03_{nom.replace(' ','_')}")
             except:
@@ -97,7 +97,7 @@ for username in usernames:
     for nom in ["Sauce Labs Bike Light", "Sauce Labs Bolt T-Shirt"]:
         try:
             quantite = driver.find_element(By.XPATH,
-                f"//div[@class='cart_item'][.//div[@class='inventory_item_name' and text(🙁'{nom}']]//div[@class='cart_quantity']").text
+                f"//div[@class='cart_item'][.//div[@class='inventory_item_name' and text('{nom}']]//div[@class='cart_quantity']").text
             print(f"TC-04 PASS : Quantité pour '{nom}' affichée : {quantite}")
             take_screenshot(f"TC-04_{nom.replace(' ','_')}")
         except:
@@ -108,7 +108,7 @@ for username in usernames:
     for nom, prix_attendu in produits_prix.items():
         try:
             prix = driver.find_element(By.XPATH,
-                f"//div[@class='cart_item'][.//div[@class='inventory_item_name' and text(🙁'{nom}']]//div[@class='inventory_item_price']").text
+                f"//div[@class='cart_item'][.//div[@class='inventory_item_name' and text('{nom}']]//div[@class='inventory_item_price']").text
             if prix == prix_attendu:
                 print(f"TC-05 PASS : Prix pour '{nom}' correct : {prix}")
                 take_screenshot(f"TC-05_{nom.replace(' ','_')}")
@@ -146,7 +146,7 @@ for username in usernames:
         driver.find_element(By.ID, "remove-sauce-labs-bike-light").click()
         time.sleep(1)
         try:
-            driver.find_element(By.XPATH, "//div[@class='inventory_item_name' and text(🙁'Sauce Labs Bike Light']")
+            driver.find_element(By.XPATH, "//div[@class='inventory_item_name' and text('Sauce Labs Bike Light']")
             print("TC-08 FAIL : Le produit n'a pas été supprimé")
         except:
             print("TC-08 PASS : Le produit a été supprimé du panier")
@@ -188,9 +188,9 @@ for username in usernames:
         for nom in produits:
             try:
                 prix = driver.find_element(By.XPATH,
-                    f"//div[@class='cart_item'][.//div[text(🙁'{nom}']]//div[@class='inventory_item_price']").text
+                    f"//div[@class='cart_item'][.//div[text('{nom}']]//div[@class='inventory_item_price']").text
                 quantite = driver.find_element(By.XPATH,
-                    f"//div[@class='cart_item'][.//div[text(🙁'{nom}']]//div[@class='cart_quantity']").text
+                    f"//div[@class='cart_item'][.//div[text('{nom}']]//div[@class='cart_quantity']").text
                 print(f"TC-10 PASS : {nom} → Prix = {prix}, Quantité = {quantite}")
                 take_screenshot(f"TC-10_{nom.replace(' ','_')}")
             except:
